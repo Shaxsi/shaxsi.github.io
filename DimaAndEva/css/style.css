@@ -13,7 +13,7 @@
   margin-right: auto;
   width: 70%;
   height: 90vh;
-  object-fit: cover;
+  object-fit: contain;
 }
 .slider__button {
   width: 50px;
