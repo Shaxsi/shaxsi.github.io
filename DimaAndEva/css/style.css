@@ -39,7 +39,7 @@
   border-color: #42aff5;
 }
 
-@media (min-width: 320px) {
+@media (max-width: 480px) {
   .slider__image {
     flex: 100%;
     height: 40vh;
