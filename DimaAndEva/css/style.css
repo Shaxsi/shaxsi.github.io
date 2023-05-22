@@ -53,3 +53,18 @@
     height: 30px;
   }
 }
+
+@media (min-width: 485px) {
+  .slider__image {
+    flex: 100%;
+    height: 80vh;
+  }
+  .slider {
+    width: 90%;
+    height: 80%;
+  }
+  .slider__button {
+    width: 30px;
+    height: 30px;
+  }
+}
