@@ -36,8 +36,8 @@ body {
   font-family: "Open Sans", Arial, sans-serif;
   font-weight: 300;
   font-size: 82%;
-  filter: blur(5px); /* filter and transition are blur effect, optional*/
-  transition: filter 0.5s;
+  /* filter: blur(5px);  filter and transition are blur effect, optional
+  transition: filter 0.5s;*/
 }
 .weather {
   width: 80%;
