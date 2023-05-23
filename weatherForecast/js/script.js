@@ -186,13 +186,14 @@ let dayOfWeek = (dt = new Date().getTime()) => {
   return new Date(dt).toLocaleDateString("en-EN", { weekday: "long" });
 };
 
-let init = async () => {
-  await weatherForCity("Istanbul");
-  document.body.style.filter = "blur(0)";
+let init = () => {
+  weatherForCity("Istanbul");
 };
 init();
-//the example below is without blur effect:
-/* let init = () => {
-  weatherForCity("Istanbul");
+
+//the example below is with blur effect:
+/* let init = async () => {
+  await weatherForCity("Istanbul");
+  document.body.style.filter = "blur(0)";
 };
 init(); */
