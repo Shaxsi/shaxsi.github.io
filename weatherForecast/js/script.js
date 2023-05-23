@@ -186,8 +186,8 @@ let dayOfWeek = (dt = new Date().getTime()) => {
   return new Date(dt).toLocaleDateString("en-EN", { weekday: "long" });
 };
 
-let init = () => {
-  weatherForCity("Istanbul");
+let init = async () => {
+  await weatherForCity("Istanbul");
 };
 init();
 
