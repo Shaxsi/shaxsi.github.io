@@ -29,7 +29,7 @@ function animateDog(elem) {
   let pos = 0; // dog's position
   let random = Math.floor(Math.random() * 6 - 3); // random generation of intervals for each dog
   //dogs will float at different pace
-  let interval = setInterval(frame, 2 - Math.floor(num / 10) + random);
+  let interval = setInterval(frame, 2 - Math.floor(num / 5) + random);
   // to increase the speed after each 10 dogs come up
 
   function frame() {
