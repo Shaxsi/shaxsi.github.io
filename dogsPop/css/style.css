@@ -1,0 +1,81 @@
+body {
+  overflow: hidden;
+  width: 100vw; /* of the width of the screen */
+  height: 100vh; /* of the height of the screen */
+
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.dog {
+  width: 100px;
+  height: 200px;
+  position: absolute;
+  top: 100vh; /* need to hide dog faces coming from the bottom 
+  that's why 100vh - the whole screen */
+
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.dog-1 {
+  background-image: url(../images/1.png);
+}
+.dog-2 {
+  background-image: url(../images/2.png);
+}
+.dog-3 {
+  background-image: url(../images/3.png);
+}
+.dog-4 {
+  background-image: url(../images/4.png);
+}
+.dog-5 {
+  background-image: url(../images/5.png);
+}
+.total-shadow {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(200, 249, 237, 0.6);
+  /* display: flex;*/
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* works only with relative position */
+  position: relative;
+}
+.total-block {
+  background: #fff;
+  padding: 10px 60px 50px 40px;
+  border-radius: 10px;
+  text-align: center;
+
+  box-shadow: 0 0 20px rgba(72, 153, 102, 0.8);
+}
+.lose {
+  display: none;
+}
+.win {
+  display: none;
+}
+.score-block {
+  background: #efefef;
+  width: 300px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px 20px 0 0; /* rounding only top corners */
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 150px); /* move the block to the center */
+}
+
+.start-game-window {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
