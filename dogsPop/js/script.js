@@ -4,11 +4,12 @@ let windowHeight = window.innerHeight;
 let body = document.body;
 let scores = document.querySelectorAll(".score");
 let num = 0;
-let total = 10;
+let total = 5;
 let currentDog = 0;
 let gameOver = false;
 let totalShadow = document.querySelector(".total-shadow");
 let startBtn = document.querySelector(".start-game-button");
+let startAgainBtn = document.querySelector(".start-game-again-button");
 
 function createDog() {
   let div = document.createElement("div");
@@ -116,6 +117,18 @@ document.querySelector(".restart").addEventListener("click", function () {
 
 // for NO button restart game
 document.querySelector(".cancel").addEventListener("click", function () {
+  totalShadow.style.display = "none";
+});
+
+document.querySelector(".restartWinner").addEventListener("click", function () {
+  totalShadow.style.display = "none"; // hide the blocks LOSE or WIN
+  totalShadow.querySelector(".win").style.display = "none";
+  totalShadow.querySelector(".lose").style.display = "none";
+  startGame();
+});
+
+// for NO button restart game
+document.querySelector(".cancelWinner").addEventListener("click", function () {
   totalShadow.style.display = "none";
 });
 
