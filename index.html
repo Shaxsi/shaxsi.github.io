@@ -11,7 +11,7 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--black);color:var(--milk);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
 main{max-width:1440px;margin:auto;padding:32px 5vw 28px}
-header{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:25px;border-bottom:1px solid var(--line)}
+header{display:flex;justify-content:flex-end;align-items:center;gap:20px;padding-bottom:25px;border-bottom:1px solid var(--line)}
 .brand{font-family:Georgia,'Times New Roman',serif;font-size:23px;letter-spacing:-.7px}
 .label{font-size:10px;text-transform:uppercase;letter-spacing:2.5px;color:var(--muted)}
 .hero{padding:85px 0 82px}
@@ -42,7 +42,7 @@ footer a{color:var(--muted)}
 </style>
 </head>
 <body><main>
-<header><div class="brand">Kate.</div><div class="label">Film portfolio</div></header>
+<header><div class="label">Film portfolio</div></header>
 <section class="hero" aria-labelledby="page-title"><div class="label">Stories in motion</div><h1 id="page-title"><span class="title-line">AI Storytelling</span><span class="title-line">&amp; Brand Commercials</span><span class="signature"><span class="copyright">©</span> Ekaterina AKA Seedreamdog</span></h1></section>
 <section class="works" aria-labelledby="works-title"><h2 id="works-title">Selected work</h2><p id="video-status" role="status">Loading films…</p><div id="videos" class="video-grid"></div><noscript><p>Please enable JavaScript to view the video portfolio.</p></noscript></section>
 <footer><span>AI Storytelling &amp; Brand Commercials © Ekaterina AKA Seedreamdog</span><a href="manage.html">Manage videos</a></footer>
