@@ -38,7 +38,7 @@ export async function loadVideos(container,status){
  const videos=await getPortfolio();container.replaceChildren();
  for(const video of videos){
  const card=document.createElement('article');card.className='video-card';
- const frame=document.createElement('iframe');frame.src='https://www.youtube-nocookie.com/embed/'+video.id;frame.title=video.title;frame.loading='lazy';frame.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';frame.allowFullscreen=true;card.append(frame);
+ const frame=document.createElement('iframe');frame.src='https://www.youtube-nocookie.com/embed/'+video.id;frame.title=video.title;frame.loading='lazy';frame.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';frame.allowFullscreen=true;const player=document.createElement('div');player.className='video-player';player.append(frame);card.append(player);
  const heading=document.createElement('h3');heading.textContent=video.title;card.append(heading);
  if(video.description){const p=document.createElement('p');p.textContent=video.description;card.append(p);}
  const link=document.createElement('a');link.href='https://www.youtube.com/watch?v='+video.id;link.textContent='Watch on YouTube ↗';link.target='_blank';link.rel='noopener';card.append(link);container.append(card);
