@@ -4,16 +4,46 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
-<meta name="description" content="Shaxsi — video portfolio.">
-<title>Shaxsi — video portfolio</title>
+<meta name="description" content="Through My Lens © Kate — a film portfolio. Stories in motion.">
+<title>Through My Lens © Kate</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#111313;color:#f5f3eb;font-family:Arial,sans-serif}main{max-width:1120px;margin:auto;padding:40px 6vw 64px}header{display:flex;justify-content:space-between;align-items:center;padding-bottom:60px;border-bottom:1px solid #353737}.brand{font-size:23px;font-weight:700;letter-spacing:-1px}.label{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#b9bcb7}.hero{padding:80px 0}h1{font-size:clamp(54px,10vw,116px);line-height:.98;letter-spacing:-.06em;font-weight:500;margin:22px 0 32px}h1 span{color:#cbf581}p{color:#b9bcb7;line-height:1.7;max-width:490px;font-size:17px}.works{padding:32px 0;border-top:1px solid #353737}h2{font-size:24px;font-weight:400}.empty{padding:36px;border:1px solid #353737;border-radius:16px;background:#191c1b;margin-top:24px}.empty p{margin:8px 0 0}footer{margin-top:64px;color:#92978f;font-size:13px}@media(max-width:520px){header{padding-bottom:30px}.hero{padding:55px 0}.empty{padding:24px}.label{font-size:10px;letter-spacing:1px}}
-.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:32px}.video-card{min-width:0}.video-card iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;background:#191c1b}.video-card h3{font-weight:500;font-size:21px}.video-card p{white-space:pre-wrap;overflow-wrap:anywhere}.video-card a,footer a{color:#cbf581}footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}#video-status:empty{display:none}</style>
+:root{--black:#080808;--milk:#f2ede3;--muted:#aca79f;--line:#34312d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--black);color:var(--milk);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:1440px;margin:auto;padding:32px 5vw 28px}
+header{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:25px;border-bottom:1px solid var(--line)}
+.brand{font-family:Georgia,'Times New Roman',serif;font-size:23px;letter-spacing:-.7px}
+.label{font-size:10px;text-transform:uppercase;letter-spacing:2.5px;color:var(--muted)}
+.hero{padding:85px 0 82px}
+.hero .label{color:var(--milk)}
+h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(56px,8.8vw,128px);line-height:1.04;letter-spacing:-.055em;font-weight:400;margin:25px 0 0}
+h1 .title-line{display:block}
+.signature{display:flex;align-items:center;gap:14px;font-family:Arial,Helvetica,sans-serif;font-size:clamp(18px,2.4vw,30px);letter-spacing:-.03em;margin-top:28px}
+.signature .copyright{font-size:.7em;color:var(--muted)}
+p{color:var(--muted);line-height:1.7;font-size:15px}
+.works{padding:26px 0 0;border-top:1px solid var(--line)}
+h2{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;margin:0 0 30px}
+.video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:50px 28px}
+.video-card{min-width:0}
+.video-card:first-child{grid-column:1/-1}
+.video-card iframe{display:block;width:100%;aspect-ratio:16/9;border:0;background:#161513}
+.video-card h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(24px,2.5vw,34px);font-weight:400;letter-spacing:-.5px;margin:20px 0 10px}
+.video-card p{max-width:700px;white-space:pre-wrap;overflow-wrap:anywhere;margin:0 0 16px}
+a{color:var(--milk);text-decoration-thickness:1px;text-underline-offset:5px}
+a:hover{color:#fff}
+a:focus-visible{outline:2px solid var(--milk);outline-offset:6px}
+.video-card a{font-size:11px;letter-spacing:1px;text-transform:uppercase}
+footer{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:85px;padding-top:25px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+footer a{color:var(--muted)}
+#video-status:empty{display:none}
+@media(min-width:1000px){.video-card:first-child iframe{aspect-ratio:2/1}}
+@media(max-width:600px){main{padding:24px 6vw}.brand{font-size:20px}header .label{font-size:9px;letter-spacing:1.2px}.hero{padding:62px 0}.video-grid{grid-template-columns:1fr;gap:38px}.signature{margin-top:22px}footer{margin-top:60px}}
+</style>
 </head>
 <body><main>
-<header><div class="brand">shaxsi.</div><div class="label">Video portfolio</div></header>
-<section class="hero"><div class="label">Stories in motion</div><h1>Every frame.<br>A new <span>story.</span></h1><p>Stories told through moving images.</p></section>
+<header><div class="brand">Kate.</div><div class="label">Film portfolio</div></header>
+<section class="hero" aria-labelledby="page-title"><div class="label">Stories in motion</div><h1 id="page-title"><span class="title-line">Through My Lens</span><span class="signature"><span class="copyright">©</span> Kate</span></h1></section>
 <section class="works" aria-labelledby="works-title"><h2 id="works-title">Selected work</h2><p id="video-status" role="status">Loading films…</p><div id="videos" class="video-grid"></div><noscript><p>Please enable JavaScript to view the video portfolio.</p></noscript></section>
-<footer>Shaxsi · Video portfolio <a href="manage.html">Manage videos</a></footer>
+<footer><span>Through My Lens © Kate</span><a href="manage.html">Manage videos</a></footer>
 </main><script type="module">import {loadVideos} from "./portfolio.js";loadVideos(document.getElementById("videos"),document.getElementById("video-status"));</script></body>
 </html>
