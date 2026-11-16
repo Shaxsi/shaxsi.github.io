@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>Manage videos — Shaxsi</title><style>
+*{box-sizing:border-box}body{margin:0;background:#111313;color:#f5f3eb;font:16px/1.6 Arial,sans-serif}main{max-width:700px;margin:auto;padding:40px 24px}a{color:#cbf581}h1{font-size:44px;line-height:1.1;letter-spacing:-2px}p{color:#b9bcb7}label{display:block;margin:24px 0 6px}input,textarea{display:block;width:100%;background:#1c201d;color:#fff;border:1px solid #60665e;border-radius:8px;padding:14px;font:inherit}button{margin-top:24px;padding:15px 24px;border:0;border-radius:8px;background:#cbf581;color:#111;font:inherit;font-weight:bold;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:4px}.note{border-top:1px solid #353737;margin-top:40px;padding-top:24px}#error{color:#ffb5b5}
+</style></head><body><main><a href="./">← Back to portfolio</a><h1>Add a film.</h1><p>Upload your video to YouTube first, then add its link here. Public and unlisted videos work if embedding is enabled. Private videos will not play for visitors.</p>
+<p>This form prepares a public GitHub entry. Sign in as <strong>Shaxsi</strong> and click <strong>Create</strong> on GitHub to publish it. Only entries created by Shaxsi appear in the portfolio.</p>
+<form id="video-form"><label for="title">Video title</label><input id="title" name="title" required maxlength="120" autocomplete="off"><label for="url">YouTube link</label><input id="url" name="url" type="url" required placeholder="https://youtu.be/…" aria-describedby="error"><label for="description">Description (optional)</label><textarea id="description" name="description" rows="4" maxlength="2000"></textarea><p id="error" role="alert"></p><button type="submit">Continue to GitHub →</button></form>
+<div class="note"><h2>Edit or remove a film</h2><p><a href="https://github.com/Shaxsi/shaxsi.github.io/issues?q=is%3Aissue+author%3AShaxsi">Open your video entries on GitHub</a>. Edit an entry to change its title, link or description. Keep the <strong>[Portfolio video]</strong> title prefix and the YouTube link on the first line. Close an entry to remove it; reopen it to restore it. Refresh the portfolio to see changes.</p><p>Video links and descriptions are public, including links to unlisted videos. Playback is hosted by YouTube. The portfolio uses GitHub’s public API, so temporary API limits can affect loading.</p></div>
+<script type="module">
+import {youtubeId} from './portfolio.js';
+document.getElementById('video-form').addEventListener('submit',event=>{
+event.preventDefault();
+const title=document.getElementById('title').value.trim(),url=document.getElementById('url').value.trim(),id=youtubeId(url);
+const error=document.getElementById('error');
+if(!title){error.textContent='Please enter a video title.';return;}
+if(!id){error.textContent='Please enter a valid YouTube video link (watch, Shorts, live or youtu.be).';return;}
+error.textContent='';
+const target=new URL('https://github.com/Shaxsi/shaxsi.github.io/issues/new');
+target.searchParams.set('title','[Portfolio video] '+title);
+target.searchParams.set('body','https://www.youtube.com/watch?v='+id+'\n\n'+document.getElementById('description').value.trim());
+window.location.assign(target.href);
+});
+</script></main></body></html>
