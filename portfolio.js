@@ -7,25 +7,42 @@ export function youtubeId(value) {
  } return /^[a-zA-Z0-9_-]{11}$/.test(id||'')?id:null;
  } catch { return null; }
 }
-export async function loadVideos(container,status) {
- try {
- let issues=[]; let page=1;
- while(true) {
+
+const PREFIX='[Portfolio video] ';
+export function arrangeVideos(videos,order=[]) {
+ const rank=new Map();order.forEach((id,i)=>{if(Number.isSafeInteger(id)&&!rank.has(id))rank.set(id,i)});
+ return [...videos].sort((a,b)=>(rank.get(a.number)??Infinity)-(rank.get(b.number)??Infinity)||b.number-a.number);
+}
+export async function getPortfolio() {
+ let issues=[],page=1;
+ while(true){
  const r=await fetch('https://api.github.com/repos/Shaxsi/shaxsi.github.io/issues?state=open&creator=Shaxsi&per_page=100&page='+page,{headers:{Accept:'application/vnd.github+json'}});
- if(!r.ok) throw Error('Unable to load videos');
- const batch=await r.json(); issues.push(...batch);
- if(batch.length<100) break; page++;
+ if(!r.ok)throw Error('Unable to load videos');
+ const batch=await r.json();issues.push(...batch);if(batch.length<100)break;page++;
  }
- for(const issue of issues) {
- if(issue.pull_request||issue.user?.login?.toLowerCase()!=='shaxsi'||!issue.title.startsWith('[Portfolio video] '))continue;
- const lines=(issue.body||'').trim().split('\n'); const id=youtubeId(lines[0].trim()); if(!id)continue;
- const title=issue.title.slice(18).trim()||'Video';
+ issues=issues.filter(i=>!i.pull_request&&i.user?.login?.toLowerCase()==='shaxsi');
+ const videos=[];
+ for(const i of issues){
+ if(!i.title.startsWith(PREFIX))continue;
+ const lines=(i.body||'').trim().split('\n'),id=youtubeId(lines[0].trim());if(!id)continue;
+ videos.push({number:i.number,id,title:i.title.slice(PREFIX.length).trim()||'Video',description:lines.slice(1).join('\n').trim()});
+ }
+ let order=[];
+ for(const i of issues.filter(i=>i.title==='[Portfolio order]').sort((a,b)=>b.number-a.number)){
+ try{const candidate=JSON.parse(i.body);if(Array.isArray(candidate)&&candidate.every(Number.isSafeInteger)){order=candidate;break}}catch{}
+ }
+ return arrangeVideos(videos,order);
+}
+export async function loadVideos(container,status){
+ try{
+ const videos=await getPortfolio();container.replaceChildren();
+ for(const video of videos){
  const card=document.createElement('article');card.className='video-card';
- const frame=document.createElement('iframe');frame.src='https://www.youtube-nocookie.com/embed/'+id;frame.title=title;frame.loading='lazy';frame.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';frame.allowFullscreen=true;card.append(frame);
- const heading=document.createElement('h3');heading.textContent=title;card.append(heading);
- const description=lines.slice(1).join('\n').trim();if(description){const p=document.createElement('p');p.textContent=description;card.append(p);}
- const link=document.createElement('a');link.href='https://www.youtube.com/watch?v='+id;link.textContent='Watch on YouTube ↗';link.target='_blank';link.rel='noopener';card.append(link);container.append(card);
+ const frame=document.createElement('iframe');frame.src='https://www.youtube-nocookie.com/embed/'+video.id;frame.title=video.title;frame.loading='lazy';frame.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';frame.allowFullscreen=true;card.append(frame);
+ const heading=document.createElement('h3');heading.textContent=video.title;card.append(heading);
+ if(video.description){const p=document.createElement('p');p.textContent=video.description;card.append(p);}
+ const link=document.createElement('a');link.href='https://www.youtube.com/watch?v='+video.id;link.textContent='Watch on YouTube ↗';link.target='_blank';link.rel='noopener';card.append(link);container.append(card);
  }
- status.textContent=container.children.length?'':'New films are on the way. Check back soon.';
+ status.textContent=videos.length?'':'New films are on the way. Check back soon.';
  }catch{status.textContent='Videos could not be loaded. Please try again later.';}
 }
